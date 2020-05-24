@@ -4,7 +4,9 @@
 <div *ngIf="matter.dayslist.length && matter.dayslist[matter.active_day_index].topicslist.length && matter.active_topic !== -1;else noeditor">
 <angular-editor 
     [(ngModel)]="content"
-    ></angular-editor>
+    >
+    {{matter.dayslist[matter.active_day_index].topicslist[matter.active_topic].content}}
+    </angular-editor>
     <button (click) = "senddata(true)">
         save
     </button>
@@ -17,7 +19,8 @@
     <div *ngIf="matter.dayslist.length && matter.dayslist[matter.active_day_index].topicslist.length && matter.active_topic !== -1;else noeditor">
         <angular-editor 
             [(ngModel)]="instructions"
-            ></angular-editor>
+            >
+            {{matter.dayslist[matter.active_day_index].topicslist[matter.active_topic].instruction}}</angular-editor>
             <button (click)="senddata(false)">
                 save
             </button>
