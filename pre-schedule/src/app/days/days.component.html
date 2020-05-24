@@ -1,0 +1,14 @@
+<div class='days'>
+    <button (click)='matter.add_day()'>add day</button>
+    <ul>
+        <li *ngFor="let item of matter.dayslist;let i= index" 
+        (click)='matter.dayclicked(i)'
+        [class.active] = 'matter.dayslist[i].selected'
+        >
+            <div>
+                <p>{{item.name}}</p>
+                <button (click) = 'deleteindex(i)'> delete</button>
+            </div>
+        </li>
+    </ul>
+</div>  

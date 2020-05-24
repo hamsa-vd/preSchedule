@@ -1,0 +1,63 @@
+<div class="topics" *ngIf="matter.dayslist.length && matter.active_day_index!==-1 ;else notopics">
+    <ng-template #topic_data let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+          <button type="button" class="close btn-sm btn btn-outline-danger" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" method=''>
+            <label for="name" >Topic Name</label>
+            <input type="text" id = 'name' required name = 'name' [(ngModel)]="topic_name" ><span>{{topic_name}}</span>
+            <label for="type">Type</label>
+            <select name="type" id="type" name='select' required multiple [(ngModel)]="type_select">
+              <option value="task">Task</option>
+              <option value="move">Move</option>
+              <option value="pre-read">pre-read</option>
+            </select><span>{{type_select}}</span>
+            <label for="content">content</label>
+            <textarea name="content" id="content" cols="50" rows="5" required [(ngModel)]="topic_content"></textarea>
+            <label for="instructions">Instructions for Mentor</label>
+            <textarea name="instructions" id="instructions" cols="50" rows="10" required [(ngModel)]="instructions"></textarea>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-success"(click)="c('Save click');submit()">Save</button>
+        </div>
+      </ng-template>
+      <ul>
+        <li *ngFor="let item of matter.dayslist[matter.active_day_index].topicslist;let i=index" (click) = 'matter.topic_clicked(i)' [class.active]='item.selected' >
+            <p>{{item.name}}</p>
+            <span *ngIf="item.contents_aside.includes('task')">task</span>
+            <span *ngIf="item.contents_aside.includes('move')" (click)="selectday(move);topic_to_move=i">move</span>
+            <span *ngIf="item.contents_aside.includes('task')">pre-read</span>
+            <button>close</button>
+        </li>
+      </ul>
+    <button (click) = 'showmodal(topic_data)'>add topic</button>
+</div>  
+<ng-template #notopics>
+  <p>
+    please add a day and click on it to click on it to add topics about particular day
+  </p>
+</ng-template>
+<ng-template #move let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  <label for="day"></label>
+  <select name="day" id="day" [(ngModel)]="selectedday">
+    <option  *ngFor="let day of matter.dayslist" value='{{day.name}}'>
+      {{day.name}}
+    </option>
+  </select>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="matter.movetoday(selectedday,topic_to_move);c('Save click')">Save</button>
+  </div>
+</ng-template>  

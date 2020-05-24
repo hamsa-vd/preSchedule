@@ -1,0 +1,15 @@
+<div class="parent">
+  <app-days
+  [matter] = "data"
+  (deleteclick) = "data.deleteday($event)"
+  ></app-days>
+  <app-topics
+   [topic_matter] = "data"
+    (topic_data) ="data.include_topic($event)"
+    ></app-topics>
+  <app-editor
+  [sentdata] = "data"
+  (contentdata) = "data.addcontent($event)"
+  (instructiondata) = "data.addinstruction($event)"
+  ></app-editor>
+</div>
