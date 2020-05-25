@@ -1,1 +1,55 @@
-
+.days {
+	.add_day {
+		outline: none;
+		border: none;
+		width: 80%;
+		text-align: center;
+		text-transform: capitalize;
+		margin: max(0.5rem, 1vw);
+		font-size: max(0.5rem, 1.5vw);
+		padding: max(0.5rem, 0.5vw) 0px;
+		border-radius: 1vw;
+	}
+	ul {
+		padding: 0px;
+		list-style-type: none;
+		li {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			border-radius: 1rem;
+			margin: 1vw;
+			align-items: center;
+			align-content: center;
+			padding-top: 0.5rem;
+			border-radius: 1rem;
+			p {
+				font-size: max(1rem, 1vw);
+			}
+			button {
+				outline: none;
+				border: none;
+				display: grid;
+				place-content: center;
+				padding: 0px;
+				width: max(1rem, 1vw);
+				height: max(1rem, 1vw);
+				font-size: max(0.8rem, 1vw);
+				border-radius: 50%;
+				background-color: red;
+				margin-bottom: 1vw;
+				color: transparent;
+				&:hover {
+					color: white;
+				}
+			}
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+}
+.active {
+	background-color: black;
+	color: white;
+}

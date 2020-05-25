@@ -1,1 +1,21 @@
-
+.parent {
+	padding: 1vw;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	app-days {
+		margin-top: 1rem;
+		flex-basis: max(150px, 10vw);
+		border: 1px solid black;
+	}
+	app-topics {
+		margin-top: 1rem;
+		flex-basis: max(250px, 20vw);
+		border: 1px solid black;
+	}
+	app-editor {
+		margin-top: 1rem;
+		flex-basis: max(500px, 60vw);
+		border: 1px solid black;
+	}
+}

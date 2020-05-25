@@ -30,7 +30,16 @@ export class EditorComponent implements OnInit {
 		translate: 'yes',
 		enableToolbar: true,
 		showToolbar: true,
-		placeholder: 'Enter text here...',
+		// placeholder: this.matter.dayslist.length
+		// 	? this.selection
+		// 		? this.matter.dayslist[this.matter.active_day_index != -1 ? this.matter.active_day_index : 0].topicslist[
+		// 				this.matter.active_topic != -1 ? this.matter.active_topic : 0
+		// 			].content
+		// 		: this.matter.dayslist[this.matter.active_day_index != -1 ? this.matter.active_day_index : 0].topicslist[
+		// 				this.matter.active_topic != -1 ? this.matter.active_topic : 0
+		// 			].instruction
+		// 	: 'Enter your text...',
+		placeholder: 'Enter your text here...',
 		defaultParagraphSeparator: '',
 		defaultFontName: '',
 		defaultFontSize: '',

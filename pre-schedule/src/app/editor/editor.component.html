@@ -1,31 +1,25 @@
-<button (click)="changeselection(true)">content</button>
-<button (click) = "changeselection(false)">instructions for mentor</button>
-<div class="content" *ngIf="selection;else instruction">
 <div *ngIf="matter.dayslist.length && matter.dayslist[matter.active_day_index].topicslist.length && matter.active_topic !== -1;else noeditor">
+<button (click)="changeselection(true)" class="btn btn-dark rounded-2 mx-1">content</button>
+<button (click) = "changeselection(false)" class="btn btn-dark rounded-2 mx-1">instructions for mentor</button>
+<div class="content" *ngIf="selection;else instruction">
 <angular-editor 
     [(ngModel)]="content"
     >
-    {{matter.dayslist[matter.active_day_index].topicslist[matter.active_topic].content}}
-    </angular-editor>
-    <button (click) = "senddata(true)">
+</angular-editor>
+    <button (click) = "senddata(true)" class="btn btn-success rounded-pill">
         save
     </button>
 </div>
-<ng-template #noeditor>
-    Add a topic and select it by clicking on it
+<ng-template #instruction>
+        <angular-editor 
+        [(ngModel)]="instructions"
+        >
+    </angular-editor>
+    <button (click)="senddata(false)" class="btn btn-success rounded-pill">
+        save
+    </button>
 </ng-template>
 </div>
-<ng-template #instruction>
-    <div *ngIf="matter.dayslist.length && matter.dayslist[matter.active_day_index].topicslist.length && matter.active_topic !== -1;else noeditor">
-        <angular-editor 
-            [(ngModel)]="instructions"
-            >
-            {{matter.dayslist[matter.active_day_index].topicslist[matter.active_topic].instruction}}</angular-editor>
-            <button (click)="senddata(false)">
-                save
-            </button>
-    </div>
-        <ng-template #noeditor>
-            Add a topic and select it by clicking on it
-        </ng-template>
+<ng-template #noeditor>
+    Add a topic and select it by clicking on it
 </ng-template>

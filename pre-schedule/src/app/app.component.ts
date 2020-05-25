@@ -9,8 +9,8 @@ import { Topics } from './topics';
 export class AppComponent {
 	data = {
 		dayslist: <Days[]>[],
-		active_day_index: 0,
-		active_topic: 0,
+		active_day_index: -1,
+		active_topic: -1,
 		add_day() {
 			this.makefalse(this.dayslist);
 			this.dayslist.push(new Days(`Day ${this.dayslist.length + 1}`));
@@ -36,9 +36,11 @@ export class AppComponent {
 		},
 		addcontent(inpdata) {
 			this.dayslist[this.active_day_index].topicslist[this.active_topic].content += inpdata;
+			console.log(inpdata);
 		},
 		addinstruction(inpdata) {
 			this.dayslist[this.active_day_index].topicslist[this.active_topic].instruction += inpdata;
+			console.log(inpdata);
 		},
 		movetoday(name, topic_index) {
 			this.dayslist
