@@ -1,21 +1,42 @@
+// .parent {
+// 	padding: 1vw;
+// 	display: flex;
+// 	flex-wrap: wrap;
+// 	justify-content: space-around;
+// 	app-days {
+// 		margin-top: 1rem;
+// 		flex-basis: max(150px, 10vw);
+// 		border: 1px solid black;
+// 	}
+// 	app-topics {
+// 		margin-top: 1rem;
+// 		flex-basis: max(250px, 20vw);
+// 		border: 1px solid black;
+// 	}
+// 	app-editor {
+// 		margin-top: 1rem;
+// 		flex-basis: max(500px, 60vw);
+// 		border: 1px solid black;
+// 	}
+// }
 .parent {
-	padding: 1vw;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
+	margin-top: 2rem;
+	padding: 1rem;
+	border-radius: 2rem;
+	background-color: rgba(0, 0, 0, 0.192);
 	app-days {
-		margin-top: 1rem;
-		flex-basis: max(150px, 10vw);
-		border: 1px solid black;
+		background-color: rgba(255, 255, 255, 0.459);
+		border-radius: 1rem;
+		box-shadow: 12px 12px 20px 0px rgba(0, 0, 0, 0.25), -8px -8px 12px 0px rgba($color: white, $alpha: 0.3);
 	}
 	app-topics {
-		margin-top: 1rem;
-		flex-basis: max(250px, 20vw);
-		border: 1px solid black;
+		background-color: rgba(255, 255, 255, 0.459);
+		border-radius: 1rem;
+		box-shadow: 12px 12px 20px 0px rgba(0, 0, 0, 0.25), -8px -8px 12px 0px rgba($color: white, $alpha: 0.3);
 	}
 	app-editor {
-		margin-top: 1rem;
-		flex-basis: max(500px, 60vw);
-		border: 1px solid black;
+		background-color: rgba(255, 255, 255, 0.459);
+		border-radius: 1rem;
+		box-shadow: 12px 12px 20px 0px rgba(0, 0, 0, 0.25), -8px -8px 12px 0px rgba($color: white, $alpha: 0.3);
 	}
 }

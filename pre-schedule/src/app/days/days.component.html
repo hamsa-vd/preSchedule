@@ -1,11 +1,12 @@
-<div class='days'>
-    <button class = 'add_day'(click)='matter.add_day()' class='btn btn-dark rounded-pill'>add day</button>
-    <ul>
+<div class='days container'>
+    <button class = 'add_day'(click)='matter.add_day()' class='container btn btn-dark rounded-pill my-2'>add day</button>
+    <ul class="container bg-aqua justify-content-center align-items-center">
         <li *ngFor="let item of matter.dayslist;let i= index" 
         (click)='matter.dayclicked(i)'
         [class.active] = 'matter.dayslist[i].selected'
+        class='row justify-content-around py-2'
         >
-                <p>{{item.name}}</p>
+                <p class="lead">{{item.name}}</p>
                 <button (click) = 'deleteindex(i)'>x</button>
         </li>
     </ul>

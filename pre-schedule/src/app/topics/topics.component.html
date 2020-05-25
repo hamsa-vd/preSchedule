@@ -26,15 +26,16 @@
           <button type="button" class="btn border-success"(click)="c('Save click');submit()">Save</button>
         </div>
       </ng-template>
-      <button (click) = 'showmodal(topic_data)' class="add_topic btn-sm btn-secondary rounded-circle m-1">+</button>
+      <button (click) = 'showmodal(topic_data)' class="add_topic">add topic</button>
       <ul>
         <li *ngFor="let item of matter.dayslist[matter.active_day_index].topicslist;let i=index" (click) = 'matter.topic_clicked(i)'
-         [class.active]='item.selected' class='container-fluid row select_topic' >
-            <p class='col-lg-3'>{{item.name}}</p>
+         [class.active]='item.selected' class='container-fluid row select_topic py-2' >
+            <p class='col-lg-3 lead'>{{item.name}}</p>
             <div class="col-lg-9 justify-content-around">
-              <span *ngIf="item.contents_aside!=undefined"  class="badge badge-pill badge-success col-4">{{item.contents_aside}}</span>
-              <span (click)="selectday(move);topic_to_move=i" class=" col-4 badge badge-pill badge-success">move</span>
-              <button class="btn-xs btn-danger rounded-circle col-4">x</button>
+              <span *ngIf="item.contents_aside!=undefined"  class="badge badge-pill badge-success col-4 mx-1">{{item.contents_aside}}</span>
+              <span (click)="selectday(move);topic_to_move=i" class=" col-4 badge badge-pill badge-success mx-1">move</span>
+              <!-- <button class="btn-xs btn-danger rounded-circle col-4">x</button> -->
+              <span class='delete_topic' (click)="matter.delete_topic(i)">&times;</span>
             </div>
         </li>
       </ul>

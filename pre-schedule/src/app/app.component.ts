@@ -47,6 +47,9 @@ export class AppComponent {
 				.filter((v) => v.name == name)[0]
 				.topicslist.push(this.dayslist[this.active_day_index].topicslist[topic_index]);
 			this.dayslist[this.active_day_index].topicslist.splice(topic_index, 1);
+		},
+		delete_topic(index: number) {
+			this.dayslist[this.active_day_index].topicslist.splice(index, 1);
 		}
 	};
 }
