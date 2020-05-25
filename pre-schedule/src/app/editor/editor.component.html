@@ -1,6 +1,6 @@
 <div *ngIf="matter.dayslist.length && matter.dayslist[matter.active_day_index].topicslist.length && matter.active_topic !== -1;else noeditor">
-<button (click)="changeselection(true)" class="btn btn-dark rounded-2 mx-1">content</button>
-<button (click) = "changeselection(false)" class="btn btn-dark rounded-2 mx-1">instructions for mentor</button>
+<button (click)="changeselection(true)" class="btn btn-dark rounded-2 mx-1 my-2">content</button>
+<button (click) = "changeselection(false)" class="btn btn-dark rounded-2 mx-1 my-2">instructions for mentor</button>
 <div class="content" *ngIf="selection;else instruction">
 <angular-editor 
     [(ngModel)]="content"
