@@ -1,0 +1,96 @@
+<div class="first" [class.parent]='mouseon' (click)='mouseon=true'>
+  <form action="" method="" [formGroup]='formdata' (submit)='submit()'>
+    <label for="name">
+      <p>Name</p>
+      <input placeholder="Enter text here...." type="text" name="name" id="name" formControlName= "name">
+      <span [class.error]="!formdata.get('name').valid && formdata.get('name').dirty"  >name feild reuired</span>
+    </label>
+    <label for="email">
+      <P>email</P>
+      <input  placeholder="Enter text here...." type="email" name="email" id="email" formControlName= "email">
+      <span [class.error]="!formdata.get('email').valid && formdata.get('email').dirty"  >enter valid e-mail</span>
+    </label>
+    <label for="phonenumber">
+      <p>phonenumber</p>
+      <input placeholder="Enter text here...." type="tel" name="phonenumber" id="phonenumber" formControlName= "tel">
+      <span [class.error]="!formdata.get('tel').valid && formdata.get('tel').dirty"  >enter valid phone number</span>
+    </label>
+    <label for="password">
+      <p>password</p>
+      <input placeholder="Enter text here...." type="password" name="password" id="password" formControlName= "password">
+      <span [class.error]="!formdata.get('password').valid && formdata.get('password').dirty"  >password field requires min 8 letters</span>
+    </label>
+    <label for="confpassword">
+      <p>confirm password</p>
+      <input placeholder="Enter text here...." type="password" name="confpassword" id="confpassword" formControlName= "confpassword">
+      <span [class.error]="!formdata.get('confpassword').valid && formdata.get('confpassword').dirty"  >password doesn't match</span>
+    </label>
+    <label for="country">
+      <p>country</p>
+      <select name="country" id="country" formControlName = 'country' (change)="assignstates()">
+        <option value="ind">India</option>
+        <option value="aus">Australia</option>
+        <option value="usa">America</option>
+      </select>
+      <span [class.error]="!formdata.get('country').valid && formdata.get('country').dirty"  >feild required</span>
+    </label>
+    <label for="state">
+      <p>state</p>
+      <select name="state" id="state" formControlName = 'state'  (change) = "assigncities()">
+       <option *ngFor="let item of states" [value] = 'item'>{{item}}</option>
+      </select>
+      <span [class.error]="!formdata.get('state').valid && formdata.get('state').dirty"  >feild required</span>
+    </label>
+    <label for="city">
+      <p>city</p>
+      <select name="city" id="city" formControlName = 'city'>
+        <option *ngFor="let item of cities" value="item">{{item}}</option>
+      </select>
+      <span [class.error]="!formdata.get('city').valid && formdata.get('city').dirty"  >feild required</span>
+    </label>
+    <div class="radio">
+      <label for="male">
+        <input  type="radio" name="gender" id="male" value="male" formControlName= 'gender'>
+        <span></span>
+        <p>Male</p>
+      </label>
+      <label for="female">
+        <input  type="radio" name="gender" id="female" value="female" formControlName= 'gender'>
+        <span></span>
+        <p>female</p></label>
+        <label for="trans">
+          <input  type="radio" name="gender" id="trans" value="others" formControlName= 'gender'>
+          <span></span>
+        <p>Others</p>
+      </label>
+    </div>
+    <div class="radio">
+      <label for="married">
+        <input  type="radio" name="maritalStatus" id="married" value="married" formControlName = 'maritalStatus'>
+        <span></span>
+        <p>married Status</p>
+      </label>
+      <label for="unmarried">
+        <input  type="radio" name="maritalStatus" id="unmarried" value="unmarried" formControlName = 'maritalStatus'>
+        <span></span>
+        <p>Not Married</p>
+      </label>
+    </div>
+    <label for="food">
+      <P> Favorite Food</P>
+      <input placeholder="Enter text here..." type="text" name="food" id="food" formControlName = 'food'>
+      <span [class.error]="!formdata.get('food').valid && formdata.get('food').dirty"  >feild required</span>
+    </label>
+    <label for="color">
+      <p>Favorite color</p> 
+      <input placeholder="Enter text here...." type="text" name="color" id="color" formControlName = 'color'>
+      <span [class.error]="!formdata.get('color').valid && formdata.get('color').dirty"  >feild required</span>
+    </label>
+    <button type="submit" (click) = 'isvalid()'>submit</button>
+  </form>
+</div>
+<div [class.output] = 'validity' class='last'>
+  <p>{{formdata.value}}</p>
+  <button (click)='refresh()'>save</button>
+  <button (click)="validity=false">close</button>
+</div>
