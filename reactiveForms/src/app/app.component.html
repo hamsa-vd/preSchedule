@@ -1,5 +1,5 @@
 <div class="first" [class.parent]='mouseon' (click)='mouseon=true'>
-  <form action="" method="" [formGroup]='formdata' (submit)='submit()'>
+  <form action="" method="" [formGroup]='formdata' (ngSubmit)='submit()'>
     <label for="name">
       <p>Name</p>
       <input placeholder="Enter text here...." type="text" name="name" id="name" formControlName= "name"
@@ -30,29 +30,33 @@
       [class.invalidinput]="!formdata.get('confpassword').valid && formdata.get('confpassword').dirty">
       <span [class.error]="!formdata.get('confpassword').valid && formdata.get('confpassword').dirty"  >password doesn't match</span>
     </label>
-    <label for="country">
-      <p>country</p>
-      <select name="country" id="country" formControlName = 'country' (change)="assignstates()">
-        <option value="ind">India</option>
-        <option value="aus">Australia</option>
-        <option value="usa">America</option>
-      </select>
-      <span [class.error]="!formdata.get('country').valid && formdata.get('country').dirty"  >feild required</span>
-    </label>
-    <label for="state">
-      <p>state</p>
-      <select name="state" id="state" formControlName = 'state'  (change) = "assigncities()">
-       <option *ngFor="let item of states" [value] = 'item'>{{item}}</option>
-      </select>
-      <span [class.error]="!formdata.get('state').valid && formdata.get('state').dirty"  >feild required</span>
-    </label>
-    <label for="city">
-      <p>city</p>
-      <select name="city" id="city" formControlName = 'city'>
-        <option *ngFor="let item of cities" value="item">{{item}}</option>
-      </select>
-      <span [class.error]="!formdata.get('city').valid && formdata.get('city').dirty"  >feild required</span>
-    </label>
+    <div formArrayName='address'>
+      <div *ngFor="let item of formdata.get('address').controls; let i=index" [formGroupName] = 'i'> 
+        <label for="country">
+          <p>country</p>
+          <select name="country" id="country" formControlName = 'country' (change)="assignstates(i)">
+            <option value="ind">India</option>
+            <option value="aus">Australia</option>
+            <option value="usa">America</option>
+          </select>
+          <!-- <span [class.error]="!formdata.get('country').valid && formdata.get('country').dirty"  >feild required</span> -->
+        </label>
+        <label for="state">
+          <p>state</p>
+          <select name="state" id="state" formControlName = 'state'  (change) = "assigncities(i)">
+           <option *ngFor="let item of states[i]" [value] = 'item'>{{item}}</option>
+          </select>
+          <!-- <span [class.error]="!formdata.get('state').valid && formdata.get('state').dirty"  >feild required</span> -->
+        </label>
+        <label for="city">
+          <p>city</p>
+          <select name="city" id="city" formControlName = 'city'>
+            <option *ngFor="let item of cities[i]" value="item">{{item}}</option>
+          </select>
+          <!-- <span [class.error]="!formdata.get('city').valid && formdata.get('city').dirty"  >feild required</span> -->
+        </label>
+      </div>
+    </div>
     <div class="radio">
       <label for="male">
         <input  type="radio" name="gender" id="male" value="male" formControlName= 'gender'>
@@ -93,11 +97,11 @@
       [class.invalidinput]="!formdata.get('color').valid && formdata.get('color').dirty">
       <span [class.error]="!formdata.get('color').valid && formdata.get('color').dirty"  >feild required</span>
     </label>
-    <button type="submit" (click) = 'isvalid()'>submit</button>
+    <button type="submit">submit</button>
   </form>
 </div>
 <div [class.output] = 'validity' class='last'>
-  <p>{{formdata.value}}</p>
+  <p>{{formdata.value | json}}</p>
   <button (click)='refresh()'>save</button>
   <button (click)="validity=false">close</button>
 </div>

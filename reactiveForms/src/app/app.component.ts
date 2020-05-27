@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 @Component({
 	selector: 'app-root',
@@ -8,8 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AppComponent {
 	formdata: FormGroup;
-	states: string[];
-	cities: string[];
+	states: string[][] = [ [ '' ], [ '' ], [ '' ] ];
+	cities: string[][] = [ [ '' ], [ '' ], [ '' ] ];
 	validity: boolean = false;
 	mouseon: boolean = false;
 	countrydata = {
@@ -29,20 +29,19 @@ export class AppComponent {
 			'los angeles': [ 'los angelees', 'west hollywood' ]
 		}
 	};
-	isvalid() {
-		this.validity = this.formdata.valid;
-	}
 	showtoastr(str) {
 		this.toastr.error('is an invalid field', str);
 	}
-	assignstates() {
-		this.states = <[]>Object.keys(this.countrydata[this.formdata.get('country').value]);
+	assignstates(i) {
+		this.states[i] = Object.keys(this.countrydata[this.formdata.get('address').controls[i].get('country').value]);
 	}
 	refresh(): void {
 		window.location.reload();
 	}
-	assigncities() {
-		this.cities = this.countrydata[this.formdata.get('country').value][this.formdata.get('state').value];
+	assigncities(i) {
+		this.cities[i] = this.countrydata[this.formdata.get('address').controls[i].get('country').value][
+			this.formdata.get('address').controls[i].get('state').value
+		];
 	}
 	checkpassword() {
 		if (this.formdata.get('confpassword').valid && this.formdata.get('confpassword'))
@@ -50,25 +49,40 @@ export class AppComponent {
 				alert("passwords doesn't match");
 	}
 	submit() {
-		console.table(this.formdata.value);
-		console.log(this.formdata.valid);
-		console.log(Object.keys(this.countrydata[this.formdata.get('country').value]));
+		this.validity = this.formdata.valid;
+		console.log(this.validity);
+		console.log(this.formdata.value);
 	}
-	constructor(private toastr: ToastrService) {
+	//,private toastr: ToastrService
+	constructor(private fb: FormBuilder, private toastr: ToastrService) {
 		alert('click on the form');
-		this.formdata = new FormGroup({
-			name: new FormControl('', [ Validators.required ]),
-			email: new FormControl('', [ Validators.required, Validators.email ]),
-			tel: new FormControl('', [ Validators.required ]),
-			password: new FormControl('', [ Validators.required, Validators.minLength(8) ]),
-			confpassword: new FormControl('', [ Validators.required, Validators.minLength(8) ]),
-			country: new FormControl('', [ Validators.required ]),
-			state: new FormControl('', [ Validators.required ]),
-			city: new FormControl('', [ Validators.required ]),
-			gender: new FormControl('', [ Validators.required ]),
-			maritalStatus: new FormControl('', [ Validators.required ]),
-			food: new FormControl('', [ Validators.required ]),
-			color: new FormControl('', [ Validators.required ])
+		this.formdata = this.fb.group({
+			name: [ '', [ Validators.required ] ],
+			email: [ '', [ Validators.required, Validators.email ] ],
+			tel: [ '', [ Validators.required ] ],
+			password: [ '', [ Validators.required, Validators.minLength(8) ] ],
+			confpassword: [ '', [ Validators.required, Validators.minLength(8) ] ],
+			address: this.fb.array([
+				this.fb.group({
+					country: [ '', [ Validators.required ] ],
+					state: [ '', [ Validators.required ] ],
+					city: [ '', [ Validators.required ] ]
+				}),
+				this.fb.group({
+					country: [ '', [ Validators.required ] ],
+					state: [ '', [ Validators.required ] ],
+					city: [ '', [ Validators.required ] ]
+				}),
+				this.fb.group({
+					country: [ '', [ Validators.required ] ],
+					state: [ '', [ Validators.required ] ],
+					city: [ '', [ Validators.required ] ]
+				})
+			]),
+			gender: [ '', [ Validators.required ] ],
+			maritalStatus: [ '', [ Validators.required ] ],
+			food: [ '', [ Validators.required ] ],
+			color: [ '', [ Validators.required ] ]
 		});
 	}
 }
