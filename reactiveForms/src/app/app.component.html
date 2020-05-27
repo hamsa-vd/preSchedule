@@ -2,27 +2,32 @@
   <form action="" method="" [formGroup]='formdata' (submit)='submit()'>
     <label for="name">
       <p>Name</p>
-      <input placeholder="Enter text here...." type="text" name="name" id="name" formControlName= "name">
+      <input placeholder="Enter text here...." type="text" name="name" id="name" formControlName= "name"
+      [class.invalidinput]="!formdata.get('name').valid && formdata.get('name').dirty">
       <span [class.error]="!formdata.get('name').valid && formdata.get('name').dirty"  >name feild reuired</span>
     </label>
     <label for="email">
       <P>email</P>
-      <input  placeholder="Enter text here...." type="email" name="email" id="email" formControlName= "email">
+      <input  placeholder="Enter text here...." type="email" name="email" id="email" formControlName= "email"
+      [class.invalidinput]="!formdata.get('email').valid && formdata.get('email').dirty" >
       <span [class.error]="!formdata.get('email').valid && formdata.get('email').dirty"  >enter valid e-mail</span>
     </label>
     <label for="phonenumber">
       <p>phonenumber</p>
-      <input placeholder="Enter text here...." type="tel" name="phonenumber" id="phonenumber" formControlName= "tel">
+      <input placeholder="Enter text here...." type="tel" name="phonenumber" id="phonenumber" formControlName= "tel"
+      [class.invalidinput]="!formdata.get('tel').valid && formdata.get('tel').dirty">
       <span [class.error]="!formdata.get('tel').valid && formdata.get('tel').dirty"  >enter valid phone number</span>
     </label>
     <label for="password">
       <p>password</p>
-      <input placeholder="Enter text here...." type="password" name="password" id="password" formControlName= "password">
+      <input placeholder="Enter text here...." type="password" name="password" id="password" formControlName= "password"
+      [class.invalidinput]="!formdata.get('password').valid && formdata.get('password').dirty">
       <span [class.error]="!formdata.get('password').valid && formdata.get('password').dirty"  >password field requires min 8 letters</span>
     </label>
     <label for="confpassword">
       <p>confirm password</p>
-      <input placeholder="Enter text here...." type="password" name="confpassword" id="confpassword" formControlName= "confpassword">
+      <input placeholder="Enter text here...." type="password" name="confpassword" id="confpassword" formControlName= "confpassword"
+      [class.invalidinput]="!formdata.get('confpassword').valid && formdata.get('confpassword').dirty">
       <span [class.error]="!formdata.get('confpassword').valid && formdata.get('confpassword').dirty"  >password doesn't match</span>
     </label>
     <label for="country">
@@ -78,12 +83,14 @@
     </div>
     <label for="food">
       <P> Favorite Food</P>
-      <input placeholder="Enter text here..." type="text" name="food" id="food" formControlName = 'food'>
+      <input placeholder="Enter text here..." type="text" name="food" id="food" formControlName = 'food'
+      [class.invalidinput]="!formdata.get('food').valid && formdata.get('food').dirty">
       <span [class.error]="!formdata.get('food').valid && formdata.get('food').dirty"  >feild required</span>
     </label>
     <label for="color">
       <p>Favorite color</p> 
-      <input placeholder="Enter text here...." type="text" name="color" id="color" formControlName = 'color'>
+      <input placeholder="Enter text here...." type="text" name="color" id="color" formControlName = 'color'
+      [class.invalidinput]="!formdata.get('color').valid && formdata.get('color').dirty">
       <span [class.error]="!formdata.get('color').valid && formdata.get('color').dirty"  >feild required</span>
     </label>
     <button type="submit" (click) = 'isvalid()'>submit</button>
