@@ -33,14 +33,16 @@ export class AppComponent {
 		this.toastr.error('is an invalid field', str);
 	}
 	assignstates(i) {
-		this.states[i] = Object.keys(this.countrydata[this.formdata.get('address').controls[i].get('country').value]);
+		this.states[i] = Object.keys(
+			this.countrydata[this.formdata.get('address')['controls'][i].get('country').value]
+		);
 	}
 	refresh(): void {
 		window.location.reload();
 	}
 	assigncities(i) {
-		this.cities[i] = this.countrydata[this.formdata.get('address').controls[i].get('country').value][
-			this.formdata.get('address').controls[i].get('state').value
+		this.cities[i] = this.countrydata[this.formdata.get('address')['controls'][i].get('country').value][
+			this.formdata.get('address')['controls'][i].get('state').value
 		];
 	}
 	checkpassword() {
