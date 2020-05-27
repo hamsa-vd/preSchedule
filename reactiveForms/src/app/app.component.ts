@@ -44,6 +44,11 @@ export class AppComponent {
 	assigncities() {
 		this.cities = this.countrydata[this.formdata.get('country').value][this.formdata.get('state').value];
 	}
+	checkpassword() {
+		if (this.formdata.get('confpassword').valid && this.formdata.get('confpassword'))
+			if (this.formdata.get('confpassword').value != this.formdata.get('password').value)
+				alert("passwords doesn't match");
+	}
 	submit() {
 		console.table(this.formdata.value);
 		console.log(this.formdata.valid);
@@ -55,8 +60,8 @@ export class AppComponent {
 			name: new FormControl('', [ Validators.required ]),
 			email: new FormControl('', [ Validators.required, Validators.email ]),
 			tel: new FormControl('', [ Validators.required ]),
-			password: new FormControl('', [ Validators.required, Validators.minLength(10) ]),
-			confpassword: new FormControl('', [ Validators.required, Validators.minLength(10) ]),
+			password: new FormControl('', [ Validators.required, Validators.minLength(8) ]),
+			confpassword: new FormControl('', [ Validators.required, Validators.minLength(8) ]),
 			country: new FormControl('', [ Validators.required ]),
 			state: new FormControl('', [ Validators.required ]),
 			city: new FormControl('', [ Validators.required ]),
