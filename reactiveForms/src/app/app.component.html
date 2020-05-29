@@ -31,7 +31,7 @@
       <span [class.error]="!formdata.get('confpassword').valid && formdata.get('confpassword').dirty"  >password doesn't match</span>
     </label>
     <div formArrayName='address'>
-      <div *ngFor="let item of formdata.get('address')['controls']; let i=index" [formGroupName] = 'i'> 
+      <div *ngFor="let item of formdata.get('address')`['controls']; let i=index" [formGroupName] = 'i'> 
         <label for="country">
           <p>country</p>
           <select name="country" id="country" formControlName = 'country' (change)="assignstates(i)">
