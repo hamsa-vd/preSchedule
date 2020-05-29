@@ -1,0 +1,15 @@
+<div class="img">
+    <img [src]='url'>
+    <div>
+        <h1>clean blog</h1>
+        <h4>blog theme by start bootstrap</h4>
+
+    </div>
+</div>
+<div class="blog">
+    <div *ngFor="let item of matter">
+        <h1>{{item[0]}}</h1>
+        <h3>{{item[1]}}</h3>
+        <h5>{{item[2]}}</h5>
+    </div>
+</div>
