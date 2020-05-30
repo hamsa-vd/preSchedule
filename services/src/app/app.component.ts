@@ -10,6 +10,7 @@ import { from } from 'rxjs';
 	styleUrls: [ './app.component.scss' ]
 })
 export class AppComponent {
+	happy = [ { x: 1, y: 50 }, { x: 40, y: 30 }, { x: 20, y: 20 }, { x: 0, y: 0 } ];
 	formdata: FormGroup;
 	outdata = [];
 	constructor(private fb: FormBuilder, private storer: StorerService) {
@@ -18,6 +19,15 @@ export class AppComponent {
 			y: [ '', [ Validators.required ] ],
 			name: [ '', Validators.required ]
 		});
+		this.chartdata();
+	}
+	changedata() {
+		this.happy = [
+			{
+				x: this.formdata.get('x').value,
+				y: this.formdata.get('y').value
+			}
+		];
 	}
 	pushdata() {
 		if (this.formdata.valid) this.storer.insertdata(this.formdata.value);
@@ -27,10 +37,25 @@ export class AppComponent {
 		this.storer.getdata().subscribe((v) => {
 			this.outdata = <any[]>v;
 		});
+		this.chartdata();
 	}
-	public scatterChartOptions: ChartOptions = {
-		responsive: true
-	};
+	public scatterChartData: ChartDataSets[];
+	public scatterChartType: ChartType;
+	public scatterChartOptions: ChartOptions;
+	chartdata() {
+		this.scatterChartData = [
+			{
+				data: this.happy,
+				label: 'Series A',
+				pointRadius: 5
+			}
+		];
+		this.scatterChartType = 'scatter';
+
+		this.scatterChartOptions = {
+			responsive: true
+		};
+	}
 	printonly() {
 		let out = [];
 		this.outdata.forEach((v) => {
@@ -41,13 +66,4 @@ export class AppComponent {
 		});
 		return out;
 	}
-	happy = [ { x: 1, y: 50 }, { x: 40, y: 30 }, { x: 20, y: 20 }, { x: 0, y: 0 } ];
-	public scatterChartData: ChartDataSets[] = [
-		{
-			data: this.happy,
-			label: 'Series A',
-			pointRadius: 5
-		}
-	];
-	public scatterChartType: ChartType = 'scatter';
 }

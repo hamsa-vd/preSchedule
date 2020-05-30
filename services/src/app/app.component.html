@@ -1,4 +1,4 @@
-<form action="" method="" [formGroup] = "formdata" (ngSubmit)='pushdata();printdata()'>
+<form action="" method="" [formGroup] = "formdata" (ngSubmit)='pushdata();printdata();changedata()'>
   <label for="x">
     <p>x1</p>
     <input type="text" id='data1' name='data1' formControlName='x' maxlength="2">
@@ -13,8 +13,8 @@
   </label>
   <button type="submit"> submit </button>
 </form>
-<div *ngIf="formdata.valid">
-  {{formdata | json}}
+<div *ngIf="formdata.valid" >
+  {{formdata.value | json}}
 </div>
 <div>
   <canvas baseChart
