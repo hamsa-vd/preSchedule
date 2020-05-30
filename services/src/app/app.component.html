@@ -1,7 +1,26 @@
-<form action="" method="" [formGroup] = "formdata">
+<form action="" method="" [formGroup] = "formdata" (ngSubmit)='pushdata();printdata()'>
+  <label for="x">
+    <p>x1</p>
+    <input type="text" id='data1' name='data1' formControlName='x' maxlength="2">
+  </label>
+  <label for="y">
+    <p>y1</p>
+    <input type="text" id='data2' name='data2' formControlName='y' maxlength="2">
+  </label>
   <label for="name">
     <p>Name</p>
     <input type="text" id="name" name="name" formControlName='name'>
   </label>
+  <button type="submit"> submit </button>
 </form>
+<div *ngIf="formdata.valid">
+  {{formdata | json}}
+</div>
+<div>
+  <canvas baseChart
+  [datasets]="scatterChartData"
+  [options]="scatterChartOptions"
+  [chartType]="scatterChartType">
+  </canvas>
+</div>
 <router-outlet></router-outlet>
